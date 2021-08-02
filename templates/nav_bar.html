@@ -1,0 +1,98 @@
+<!-- Navbar -->
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <!-- Brand -->
+    <a class="navbar-brand" href="/" target="_self">
+      <strong class="hangul">Fund.zip</strong>
+    </a>
+
+    <!-- Collapse -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Links -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <!-- Left -->
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/"
+            >Home
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/fundsearch.html">
+            펀드조회
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/analysis.html">
+            투자성향진단
+            <span class="sr-only">(current)</span>
+          </a>
+        </li>
+      </ul>
+
+      <!-- Right -->
+      <ul class="navbar-nav nav-flex-icons">
+        {%if login_result == True %}
+        <a class="nav-link" href="/fundsearch.html">
+          {{username}}님
+          <span class="sr-only">(current)</span>
+        </a>
+
+        <li class="nav-item">
+          <a
+            href="/mypage.html"
+            class="nav-link border border-light rounded"
+            target="_self"
+          >
+            MyPage
+          </a>
+        </li>
+        <li class="nav-item">
+          <a
+            href="/login/logout"
+            class="nav-link border border-light rounded"
+            target="_self"
+          >
+            Logout
+          </a>
+        </li>
+
+        {%else%}
+        <li class="nav-item">
+          <a
+            href="/user/login"
+            class="nav-link border border-light rounded"
+            target="_self"
+          >
+            Login
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a
+            href="/user/signup"
+            class="nav-link border border-light rounded"
+            target="_self"
+          >
+            Sign Up
+          </a>
+        </li>
+        {%endif%}
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-- Navbar -->

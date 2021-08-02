@@ -1,0 +1,242 @@
+{%extends "base.html"%}
+{%block content%}
+<div
+id="carousel-example-1z"
+class="carousel slide carousel-fade"
+data-ride="carousel"
+>
+<!--Indicators-->
+<ol class="carousel-indicators">
+  <li
+    data-target="#carousel-example-1z"
+    data-slide-to="0"
+    class="active"
+  ></li>
+  <li data-target="#carousel-example-1z" data-slide-to="1"></li>
+  <li data-target="#carousel-example-1z" data-slide-to="2"></li>
+</ol>
+<!--/.Indicators-->
+
+<!--Slides-->
+<div class="carousel-inner" role="listbox">
+  <!--First slide-->
+  <div class="carousel-item active">
+    <div class="view">
+      <!--Video source-->
+      <video class="video-intro" autoplay loop>
+        <source
+          src="https://mdbootstrap.com/img/video/city.mp4"
+          type="video/mp4"
+        />
+      </video>
+
+      <!-- Mask & flexbox options-->
+      <div
+        class="
+          mask
+          rgba-black-light
+          d-flex
+          justify-content-center
+          align-items-center
+        "
+      >
+        <!-- Content -->
+        <div class="text-center white-text mx-5 wow fadeIn">
+          <h1 class="mb-4">
+            <strong style="font-family: 'Nanum Barun Gothic'"
+              >펀드 수익률 예측</strong
+            >
+          </h1>
+
+          <p>
+            <strong style="font-family: 'Nanum Barun Gothic'"
+              >Prophet 알고리즘을 이용한 미래 펀드 수익률을
+              보여줍니다.</strong
+            >
+          </p>
+           <!--예측--> 
+           <form action = "/post" method ="post", class="input_form"> 
+              <input type="text" name ="num" value="" class="input_text"></input>
+              <input type="submit" value="입력한 펀드 수익률 예측" class="btn btn-outline-white btn-lg"
+          ></input> 
+        </form>
+        </div>
+        <!-- Content -->
+      </div>
+      <!-- Mask & flexbox options-->
+    </div>
+  </div>
+  <!--/First slide-->
+
+  <!--Second slide-->
+  <div class="carousel-item">
+    <div class="view">
+      <!--Video source-->
+      <video class="video-intro" autoplay loop>
+        <source
+          src="https://mdbootstrap.com/img/video/forest.mp4"
+          type="video/mp4"
+        />
+      </video>
+
+      <!-- Mask & flexbox options-->
+      <div
+        class="
+          mask
+          rgba-black-light
+          d-flex
+          justify-content-center
+          align-items-center
+        "
+      >
+        <!-- Content -->
+        <div class="text-center white-text mx-5 wow fadeIn">
+          <h1 class="mb-4">
+            <strong style="font-family: 'Nanum Barun Gothic'"
+              >펀드 조회</strong
+            >
+          </h1>
+
+          <p>
+            <strong style="font-family: 'Nanum Barun Gothic'"
+              >원하는 펀드 내용을 조회합니다.</strong
+            >
+          </p>
+
+          <a
+            target="_self"
+            href="/fundsearch.html"
+            class="btn btn-outline-white btn-lg"
+            >펀드 조회하러 가기
+          </a>
+        </div>
+        <!-- Content -->
+      </div>
+      <!-- Mask & flexbox options-->
+    </div>
+  </div>
+  <!--/Second slide-->
+
+  <!--Third slide-->
+  <div class="carousel-item">
+    <div class="view">
+      <!--Video source-->
+      <video class="video-intro" autoplay loop>
+        <source
+          src="https://mdbootstrap.com/img/video/Tropical.mp4"
+          type="video/mp4"
+        />
+      </video>
+
+      <!-- Mask & flexbox options-->
+      <div
+        class="
+          mask
+          rgba-black-light
+          d-flex
+          justify-content-center
+          align-items-center
+        "
+      >
+        <!-- Content -->
+        <div class="text-center white-text mx-5 wow fadeIn">
+          <h1 class="mb-4">
+            <strong style="font-family: 'Nanum Barun Gothic'"
+              >투자 성향 진단</strong
+            >
+          </h1>
+
+          <p>
+            <strong style="font-family: 'Nanum Barun Gothic'"
+              >투자 성향 진단을 통해 투자 성향을 알아봅니다.</strong
+            >
+          </p>
+
+          <a
+            target="_self"
+            href="/analysis.html"
+            class="btn btn-outline-white btn-lg"
+            >투자 성향 진단하러 가기
+          </a>
+        </div>
+        <!-- Content -->
+      </div>
+      <!-- Mask & flexbox options-->
+    </div>
+  </div>
+  <!--/Third slide-->
+</div>
+<!--/.Slides-->
+
+<!--테이블로 380개 펀드 데이터 읽어오기-->
+<div>
+<script>
+  //가져온 데이터 값을 for문을 통해 한줄씩 읽어온다
+  d3.csv("./static/fund/fund_result.csv", function(error, data){
+      if(error) throw error;
+  
+      else{
+          columns = ['num','fund','predict','min', 'max', 'risk']
+          tabulate(data, columns);
+      }})
+
+          //불러올 테이블 만들기
+          tabulate = function(data, columns){
+              table = d3.select('body').append('table')
+              thead = table.append('thead')
+              tbody = table.append('tbody')
+
+              thead.append('tr') //thead 만드는 부분으로 tr태그 append
+                  .selectAll('th') //모든 th
+                  .data(columns) //데이터 바인딩은 columns 이용
+                  .enter() //데이터 개수만큼 진행
+                  .append('th') //columns만큼 th 생성
+                  .text(function(data){ return data }) //th에 텍스트, 텍스트값은 데이터에서
+          
+              rows = tbody.selectAll('tr') //row만드는 부분 모든 tr태그 가져옴
+                          .data(data) //데이터 바인딩에 data 값
+                          .enter()
+                          .append('tr') //tr태그 data개수만큼
+
+              cells = rows.selectAll('td') //cells만드는 부분으로 모든 td값
+                      .data(function(row){ //map형식, key value 형태로
+                          return columns.map(function(column){
+                              return{ column: column, value:row[column]}
+                          })
+                      })
+                      .enter() //데이터 바인딩 한 값 만큼 진행
+                      .append('td') //td를 데이터 개수만큼 추가
+                      .text(function(d){return d.value}) //text값은 윗 부분의 data의 value값을 넣어줌
+
+                      return table;
+                  }
+</script>
+</div>
+<!--Controls-->
+<a
+  class="carousel-control-prev"
+  href="#carousel-example-1z"
+  role="button"
+  data-slide="prev"
+>
+  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  <span class="sr-only">Previous</span>
+</a>
+<a
+  class="carousel-control-next"
+  href="#carousel-example-1z"
+  role="button"
+  data-slide="next"
+>
+  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  <span class="sr-only">Next</span>
+</a>
+<!--/.Controls-->
+</div>
+<!--/.Carousel Wrapper-->
+{%endblock%}
+
+<!--Footer-->
+{%block footer%}
+{%include 'main_footer.html'%}
+{%endblock%}

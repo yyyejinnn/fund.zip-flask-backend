@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {%block head %}
+    <meta charset="utf-8" />
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <title>Fund.zip</title>
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <!-- Bootstrap core CSS -->
+    <link
+      href="{{url_for('static', filename='css/bootstrap.min.css')}}"
+      rel="stylesheet"
+    />
+    <!-- Material Design Bootstrap -->
+    <link
+      href="{{url_for('static', filename='css/mdb.min.css')}}"
+      rel="stylesheet"
+    />
+    <!-- Your custom styles (optional) -->
+    <link
+      href="{{url_for('static', filename='css/style.min.css')}}"
+      rel="stylesheet"
+    />
+    <!-- 나눔 바른 고딕 웹 폰트 적용하기 -->
+    <link
+      rel="stylesheet"
+      href="//cdn.jsdelivr.net/font-nanum/1.0/nanumbarungothic/nanumbarungothic.css"
+    />
+
+    <style type="text/css">
+      html,
+      body,
+      header,
+      .carousel {
+        height: 100%;
+      }
+
+      @media (min-width: 800px) and (max-width: 850px) {
+        .navbar:not(.top-nav-collapse) {
+          background: #1c2331 !important;
+        }
+      }
+
+      .hangul {
+        font-family: "Nanum Barun Gothic" !important;
+      }
+    </style>
+    {%endblock%}
+  </head>
+
+  <body>
+    {%include "nav_bar.html" %}
+    <!--content-->
+    {%block content%} {%endblock%}
+    <!--footer-->
+    {%block footer%}
+    <br />
+    <div class="copyright-wrap">
+      <span> Fund.zip </span>
+    </div>
+    {%endblock%}
+
+    <!-- SCRIPTS -->
+    <!-- JQuery -->
+    <script
+      type="text/javascript"
+      src="{{url_for('static', filename='js/jquery-3.3.1.min.js')}}"
+    ></script>
+    <!-- Bootstrap tooltips -->
+    <script
+      type="text/javascript"
+      src="{{url_for('static', filename='js/popper.min.js')}}"
+    ></script>
+    <!-- Bootstrap core JavaScript -->
+    <script
+      type="text/javascript"
+      src="{{url_for('static', filename='js/bootstrap.min.js')}}"
+    ></script>
+    <!-- MDB core JavaScript -->
+    <script
+      type="text/javascript"
+      src="{{url_for('static', filename='js/mdb.min.js')}}"
+    ></script>
+    <!-- Initializations -->
+    <script type="text/javascript">
+      // Animations initialization
+      new WOW().init();
+    </script>
+    <!--Fontawesome-->
+    <script
+      src="https://kit.fontawesome.com/51db22a717.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!--error-->
+    {%with messages = get_flashed_messages()%} {%if messages %}
+    <script type="text/javascript">
+      alert("{{messages[0]}}");
+    </script>
+    {%endif%} {%endwith%}
+  </body>
+</html>

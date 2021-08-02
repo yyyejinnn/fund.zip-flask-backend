@@ -1,0 +1,42 @@
+{%extends 'base.html'%}
+
+{%block head%}
+{{super()}}
+<link
+    href="{{url_for('static', filename='css/login.css')}}"
+    rel="stylesheet"
+  />
+{%endblock%}
+
+{%block content%}  
+  <!--content-->
+    <div class="main-container">
+      <div class="main-wrap">
+      <header>
+        <div class="logo-wrap"></div>
+      </header>
+      
+    <form action="/login/login_user" method="POST">
+      <section class="login-input-section-wrap">
+        <div class="login-input-wrap">	
+          <input type="text" name = "userid" placeholder="Id"></input>
+        </div>
+        <div class="login-input-wrap password-wrap">	
+          <input type="password" name = "password" placeholder="Password"></input>
+        </div>
+        <div class="login-button-wrap">
+          <button type="submit">Login</button>
+        </div>
+      </section>
+    </form>
+    
+      <section class="Easy-sgin-in-wrap">
+        <a href="user/signup" style="text-decoration:none">
+        <p class="forget-msg">Sign up</p></a>
+        <a href="/" style="text-decoration:none">
+        <p class="forget-msg">Cancel</p></a>
+      </section>
+
+      </div>
+    </div>
+{%endblock%}
