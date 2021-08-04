@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_login import UserMixin
 from db_models import mysql
 
 

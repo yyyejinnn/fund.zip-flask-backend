@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, request, flash
+from flask import Flask, Blueprint, request, flash, session
 from flask.helpers import url_for
 from flask.templating import render_template
 from werkzeug.utils import redirect
@@ -48,9 +48,18 @@ def signup():
     else:  # GET
         return render_template('user/signup.html')
 
+
 # 로그인
-
-
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
+    if request.method == "POST":
+        session['userid'] = request.form['userid']
+        return redirect(url_for('index'))
     return render_template('user/login.html')
+
+
+# 로그아웃
+@bp.route('/logout')
+def logout():
+    session.pop('userid', None)
+    return redirect(url_for('index'))

@@ -45,7 +45,7 @@
 
       <!-- Right -->
       <ul class="navbar-nav nav-flex-icons">
-        {%if login_result == True %}
+        {%if login_result %}
         <a class="nav-link" href="/fundsearch.html">
           {{username}}님
           <span class="sr-only">(current)</span>
@@ -53,7 +53,7 @@
 
         <li class="nav-item">
           <a
-            href="/mypage.html"
+            href="#"
             class="nav-link border border-light rounded"
             target="_self"
           >
@@ -62,7 +62,7 @@
         </li>
         <li class="nav-item">
           <a
-            href="/login/logout"
+            href="/user/logout"
             class="nav-link border border-light rounded"
             target="_self"
           >
