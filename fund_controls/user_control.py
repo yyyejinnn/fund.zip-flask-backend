@@ -1,5 +1,4 @@
 from flask import Flask
-from flask_login import UserMixin
 from db_models import mysql
 
 
@@ -41,3 +40,24 @@ class User():
             return None
         else:
             return user
+
+    # 비밀번호 변경
+    @staticmethod
+    def editPw(user_id, edit_pw):
+        conn = mysql.MYSQL_CONN
+        cursor = conn.cursor()
+        sql = "UPDATE user_info SET password = '%s' where id = '%s'" % (str(
+            edit_pw), str(user_id))
+
+        cursor.execute(sql)
+        conn.commit()
+
+    # 회원탈퇴
+    @staticmethod
+    def deleteUser(user_id):
+        conn = mysql.MYSQL_CONN
+        cursor = conn.cursor()
+        sql = "DELETE FROM user_info where id = '%s' " % user_id
+
+        cursor.execute(sql)
+        conn.commit()

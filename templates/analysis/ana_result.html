@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" encoding="UTF-8" />
+    <!--d3를 이용하여 CSV파일을 불러온다.-->
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <title>소비자 성향 평가 결과 화면</title>
+  </head>
+  <body>
+    <script>
+      //가져온 데이터 값을 for문을 통해 한줄씩 읽어온다
+      d3.csv("./static/fund/fund_result.csv", function(error, data){
+          if(error) throw error;
+
+          else{
+             result = {{result}}
+             document.write("[예측은 2021년 6~8월 3개월 기준입니다.]", '<br>');
+             document.write("본인과 가장 알맞는 위험도는 ", result, "등급 이며, 추천하는 펀드는 다음과 같습니다.",'<br>','<br>');
+
+             document.write("펀드이름 예측가격평균 최저예측가격 최대예측가격 위험도",'<br>');
+              for(var i=0; i<data.length;i++){
+                  if(result == 5 && data[i].risk == 1){
+                      document.write(data[i].fund ," ", data[i].predict,"  ",  data[i].min,"  ", data[i].max,"  ", data[i].risk,'<br>');
+                  }
+                  if(result == 4 && data[i].risk == 2){
+                      document.write(data[i].fund ," ", data[i].predict,"  ", data[i].min,"  ",data[i].max,"  ", data[i].risk,'<br>');
+                  }
+                  if(result == 3 && data[i].risk == 3){
+                      document.write(data[i].fund ," ", data[i].predict,"  ", data[i].min,"  ", data[i].max,"  ",data[i].risk,'<br>');
+                  }
+                  if(result == 2 && data[i].risk == 4){
+                      document.write(data[i].fund ," ", data[i].predict,"  ", data[i].min,"  ", data[i].max,"  ", data[i].risk,'<br>');
+                  }
+                  if(result == 1 && data[i].risk == 5){
+                      document.write(data[i].fund ," ", data[i].predict,"  ", data[i].min,"  ", data[i].max,"  ",data[i].risk,'<br>');
+                  }
+          }}})
+    </script>
+  </body>
+</html>

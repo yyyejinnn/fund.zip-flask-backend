@@ -1,0 +1,36 @@
+{%extends 'base.html'%} {%block content%}
+<main>
+  <div class="container">
+    <br />
+    <h3 class="h3 text-center mb-3" style="font-family: 'Nanum Barun Gothic'">
+      소비자 성향 검사결과
+    </h3>
+    <style>
+      img {
+        display: block;
+        margin: 0px auto;
+      }
+    </style>
+    <img
+      src="{{url_for('static', filename='img/check.png')}}"
+      class="img-fluid z-depth-1-half"
+      alt=""
+    />
+    <!--Section: Main info-->
+    <section class="mt-3 wow fadeIn">
+      <form action="/analysis/resultTend" , method="POST">
+        <div class="text-center mt-3">
+          <h3>고객님의 투자 성향은 "{{tendency}}" 입니다.</h3>
+          <label for="correct">투자성향에 맞는 펀드를 추천 받고싶다면? </label>
+          <input
+            type="submit"
+            style="font-family: 'Nanum Barun Gothic' !important"
+            value="펀드 추천 받으러 가기"
+          />
+          <input type="hidden" name="correct" value="{{tendency}}" />
+        </div>
+      </form>
+    </section>
+  </div>
+</main>
+{%endblock%}

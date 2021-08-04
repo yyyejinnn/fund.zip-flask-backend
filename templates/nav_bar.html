@@ -30,13 +30,13 @@
           </a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/fundsearch.html">
+          <a class="nav-link" href="/fund/search">
             펀드조회
             <span class="sr-only">(current)</span>
           </a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="/analysis.html">
+          <a class="nav-link" href="/analysis/analysis">
             투자성향진단
             <span class="sr-only">(current)</span>
           </a>
@@ -46,14 +46,14 @@
       <!-- Right -->
       <ul class="navbar-nav nav-flex-icons">
         {%if login_result %}
-        <a class="nav-link" href="/fundsearch.html">
+        <a class="nav-link">
           {{username}}님 안녕하세요!
           <span class="sr-only">(current)</span>
         </a>
 
         <li class="nav-item">
           <a
-            href="#"
+            href="/user/mypage"
             class="nav-link border border-light rounded"
             target="_self"
           >

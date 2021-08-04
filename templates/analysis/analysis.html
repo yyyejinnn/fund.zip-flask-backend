@@ -1,0 +1,603 @@
+{%extends 'base.html'%} {%block content%}
+<main>
+  <div class="main-container">
+    <br />
+    <h3 class="h3 text-center mb-3" style="font-family: 'Nanum Barun Gothic'">
+      소비자 성향 검사
+    </h3>
+    <style>
+      img {
+        display: block;
+        margin: 0px auto;
+      }
+    </style>
+    <img
+      src="{{url_for('static', filename='img/check.png')}}"
+      class="img-fluid z-depth-1-half"
+      alt=""
+    />
+
+    <!--Section: Main info-->
+    <section class="mt-3 wow fadeIn">
+      <form action="/analysis/analysis" , method="POST">
+        <div class="row">
+          <!--1~4번 문항-->
+          <div class="col-md-6 mb-4">
+            <!-- 소비자 성향검사 1번문제 -->
+            <hr />
+            <p style="font-family: 'Nanum Barun Gothic'">
+              1. 당신의 연령대는 어떻게 됩니까?
+            </p>
+            <!-- Main heading -->
+            <div class="row">
+              <div class="col">
+                <!-- Default inline 1-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="age1"
+                    name="answer1"
+                    value="12.5"
+                    required="required"
+                  />
+                  <label class="custom-control-label" for="age1"
+                    >19세 이하</label
+                  >
+                </div>
+                <!-- Default inline 2-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="age2"
+                    name="answer1"
+                    value="12.5"
+                  />
+                  <label class="custom-control-label" for="age2"
+                    >20세~40세</label
+                  >
+                </div>
+                <!-- Default inline 3-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="age3"
+                    name="answer1"
+                    value="9.3"
+                  />
+                  <label class="custom-control-label" for="age3"
+                    >41세~50세</label
+                  >
+                </div>
+                <!-- Default inline 4-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="age4"
+                    name="answer1"
+                    value="6.2"
+                  />
+                  <label class="custom-control-label" for="age4"
+                    >51세~60세</label
+                  >
+                </div>
+                <!-- Default inline 5-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="age5"
+                    name="answer1"
+                    value="3.1"
+                  />
+                  <label class="custom-control-label" for="age5"
+                    >61세 이상</label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- 소비자 성향검사 2번문제 -->
+            <hr />
+            <p style="font-family: 'Nanum Barun Gothic'">
+              2. 투자하고자 하는 자금의 투자 가능 기간은 얼마나 됩니까?
+            </p>
+            <!-- Main heading -->
+            <div class="row">
+              <div class="col">
+                <!-- Default inline 1-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="period1"
+                    name="answer2"
+                    value="3.1"
+                    required="required"
+                  />
+                  <label class="custom-control-label" for="period1"
+                    >6개월 이내</label
+                  >
+                </div>
+                <!-- Default inline 2-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="period2"
+                    name="answer2"
+                    value="6.2"
+                  />
+                  <label class="custom-control-label" for="period2"
+                    >6개월 이상~1년 이내</label
+                  >
+                </div>
+                <!-- Default inline 3-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="period3"
+                    name="answer2"
+                    value="9.3"
+                  />
+                  <label class="custom-control-label" for="period3"
+                    >1년 이상~2년 이내</label
+                  >
+                </div>
+                <!-- Default inline 4-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="period4"
+                    name="answer2"
+                    value="12.5"
+                  />
+                  <label class="custom-control-label" for="period4"
+                    >2년 이상~3년 이내</label
+                  >
+                </div>
+                <!-- Default inline 5-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="period5"
+                    name="answer2"
+                    value="15.6"
+                  />
+                  <label class="custom-control-label" for="period5"
+                    >3년 이상</label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- 소비자 성향검사 3번문제 -->
+            <hr />
+            <p style="font-family: 'Nanum Barun Gothic'">
+              3. 다음 중 투자경험과 가장 가까운 것은 어느 것입니까?
+            </p>
+            <!-- Main heading -->
+            <div class="row">
+              <div class="col">
+                <!-- Default inline 1-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="experience1"
+                    name="answer3"
+                    value="3.1"
+                    required="required"
+                  />
+                  <label class="custom-control-label" for="experience1"
+                    >은행의 예적금, 국채, 지방채, 보증채, MMF, CMA 등</label
+                  >
+                </div>
+                <!-- Default inline 2-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="experience2"
+                    name="answer3"
+                    value="6.2"
+                  />
+                  <label class="custom-control-label" for="experience2"
+                    >금융채, 신용도가 높은 회사채, 채권형펀드, 원금보존추구형ELS
+                    등</label
+                  >
+                </div>
+                <!-- Default inline 3-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="experience3"
+                    name="answer3"
+                    value="9.3"
+                  />
+                  <label class="custom-control-label" for="experience3"
+                    >신용도 중간 등급의 회사채, 원금의 일부만 보장되는 ELS,
+                    혼합형펀드 등</label
+                  >
+                </div>
+                <!-- Default inline 4-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="experience4"
+                    name="answer3"
+                    value="12.5"
+                  />
+                  <label class="custom-control-label" for="experience4"
+                    >신용도가 낮은 회사채, 주식, 원금이 보장되지 않는 ELS,
+                    시장수익률 수준의 수익을 추구하는 주식형 펀드 등</label
+                  >
+                </div>
+                <!-- Default inline 5-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="experience5"
+                    name="answer3"
+                    value="15.6"
+                  />
+                  <label class="custom-control-label" for="experience5"
+                    >ELW, 선물옵션, 시장수익률 이상의 수익을 추구하는
+                    주식형펀드, 파생상품에 투자하는 펀드, 주식 신용거래
+                    등</label
+                  >
+                </div>
+              </div>
+            </div>
+
+            <!-- 소비자 성향검사 4번문제 -->
+            <hr />
+            <p style="font-family: 'Nanum Barun Gothic'">
+              4. 금융상품 투자에 대한 본인의 지식수준은 어느 정도라고
+              생각하십니까?
+            </p>
+            <!-- Main heading -->
+            <div class="row">
+              <div class="col">
+                <!-- Default inline 1-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="knowledge1"
+                    name="answer4"
+                    value="3.1"
+                    required="required"
+                  />
+                  <label class="custom-control-label" for="knowledge1"
+                    >[매우 낮은 수준] 투자의사 결정을 스스로 내려본 경험이 없는
+                    정도</label
+                  >
+                </div>
+                <!-- Default inline 2-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="knowledge2"
+                    name="answer4"
+                    value="6.2"
+                  />
+                  <label class="custom-control-label" for="knowledge2"
+                    >[낮은 수준] 주식과 채권의 차이를 구별할 수 있는 정도</label
+                  >
+                </div>
+                <!-- Default inline 3-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="knowledge3"
+                    name="answer4"
+                    value="9.3"
+                  />
+                  <label class="custom-control-label" for="knowledge3"
+                    >[높은 수준] 투자할 수 있는 대부분의 금융상품의 차이를
+                    구별할 수 있는 정도</label
+                  >
+                </div>
+                <!-- Default inline 4-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input type="radio" class="custom-control-input"
+                  id=knowledge4" name="answer4" value="12.5">
+                  <label class="custom-control-label" for="knowledge4"
+                    >[매우 높은 수준] 금융상품을 비롯하여 모든 투자대상 상품의
+                    차이를 이해할 수 있는 정도</label
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--5~7번 문항-->
+          <div class="col-md-6 mb-4">
+            <!-- 소비자 성향검사 5번문제 -->
+            <hr />
+            <p style="font-family: 'Nanum Barun Gothic'">
+              5. 현재 투자하고자 하는 자금은 전체 금융자산(부동산 등을 제외) 중
+              어느 정도의 비중을 차지합니까?
+            </p>
+            <!-- Main heading -->
+            <div class="row">
+              <div class="col">
+                <!-- Default inline 1-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="importance1"
+                    name="answer5"
+                    value="15.6"
+                    required="required"
+                  />
+                  <label class="custom-control-label" for="importance1"
+                    >10% 이내</label
+                  >
+                </div>
+                <!-- Default inline 2-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="importance2"
+                    name="answer5"
+                    value="12.5"
+                  />
+                  <label class="custom-control-label" for="importance2"
+                    >10% 이상~20% 이내</label
+                  >
+                </div>
+                <!-- Default inline 3-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="importance3"
+                    name="answer5"
+                    value="9.3"
+                  />
+                  <label class="custom-control-label" for="importance3"
+                    >20% 이상~30% 이내</label
+                  >
+                </div>
+                <!-- Default inline 4-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="importance4"
+                    name="answer5"
+                    value="6.2"
+                  />
+                  <label class="custom-control-label" for="importance4"
+                    >30% 이상~40% 이내</label
+                  >
+                </div>
+                <!-- Default inline 5-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="importance5"
+                    name="answer5"
+                    value="3.1"
+                  />
+                  <label class="custom-control-label" for="importance5"
+                    >40% 초과</label
+                  >
+                </div>
+                <p></p>
+              </div>
+            </div>
+
+            <!-- 소비자 성향검사 6번문제 -->
+            <hr />
+            <p style="font-family: 'Nanum Barun Gothic'">
+              6. 다음 중 당신의 수입원을 가장 잘 나타내고 있는 것은 어느
+              것입니까?
+            </p>
+            <!-- Main heading -->
+            <div class="row">
+              <div class="col">
+                <!-- Default inline 1-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="income1"
+                    name="answer6"
+                    value="9.3"
+                    required="required"
+                  />
+                  <label class="custom-control-label" for="income1"
+                    >현재 일정한 수입이 발생하고 있으며, 향후 현재 수준을
+                    유지하거나 증가할 것으로 예상된다.</label
+                  >
+                </div>
+                <!-- Default inline 2-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="income2"
+                    name="answer6"
+                    value="6.2"
+                  />
+                  <label class="custom-control-label" for="income2"
+                    >현재 일정한 수입이 발생하고 있으나, 향후 감소하거나
+                    불안정할 것으로 예상된다.</label
+                  >
+                </div>
+                <!-- Default inline 3-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="income3"
+                    name="answer6"
+                    value="3.1"
+                  />
+                  <label class="custom-control-label" for="income3"
+                    >현재 일정한 수입이 없으며, 연금이 주수입원이다.</label
+                  >
+                </div>
+                <p></p>
+              </div>
+            </div>
+            <hr />
+
+            <!-- 소비자 성향검사 7번문제 -->
+            <p style="font-family: 'Nanum Barun Gothic'">
+              7. 만약 투자원금에 손실이 발생할 경우 다음 중 감수할 수 있는
+              손실수준은 어느 것입니까?
+            </p>
+            <!-- Main heading -->
+            <div class="row">
+              <div class="col">
+                <!-- Default inline 1-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="loss1"
+                    name="answer7"
+                    value="-6.2"
+                    required="required"
+                  />
+                  <label class="custom-control-label" for="loss1"
+                    >무슨 일이 있어도 투자원금은 보전되어야 한다.</label
+                  >
+                </div>
+                <!-- Default inline 2-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="loss2"
+                    name="answer7"
+                    value="6.2"
+                  />
+                  <label class="custom-control-label" for="loss2"
+                    >10% 미만까지는 손실을 감수할 수 있을 것 같다.</label
+                  >
+                </div>
+                <!-- Default inline 3-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="loss3"
+                    name="answer7"
+                    value="12.5"
+                  />
+                  <label class="custom-control-label" for="loss3"
+                    >20% 미만까지는 손실을 감수할 수 있을 것 같다.</label
+                  >
+                </div>
+                <!-- Default inline 4-->
+                <div
+                  class="custom-control custom-checkbox custom-control-inline"
+                >
+                  <input
+                    type="radio"
+                    class="custom-control-input"
+                    id="loss4"
+                    name="answer7"
+                    value="18.7"
+                  />
+                  <label class="custom-control-label" for="loss4"
+                    >기대수익이 높다면 위험이 높아도 상관하지 않겠다.</label
+                  >
+                  <p></p>
+                </div>
+                <p></p>
+                <hr />
+                <input
+                  type="submit"
+                  style="font-family: 'Nanum Barun Gothic' !important"
+                  class="btn btn-primary btn-md pull-right"
+                  value="설문조사 제출"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </section>
+  </div>
+</main>
+{%endblock%}

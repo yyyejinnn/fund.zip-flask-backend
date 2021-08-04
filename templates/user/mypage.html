@@ -1,38 +1,45 @@
-{%extends 'base.html'%} 
+{%extends 'base.html'%}
+
+{%block head%}
+{{super()}}
+<link
+    href="{{url_for('static', filename='css/login.css')}}"
+    rel="stylesheet"
+  />
+{%endblock%}
+
 {%block content%}
-	<div class="main-container">
-		<div class="main-wrap">
-		<header>
-		</header>
+<div class="main-container">
+<div class="main-wrap"></div>
     
   <form method="POST">
-		<section class="login-input-section-wrap">
+	<section class="login-input-section-wrap">
 
     <label> ID </label>
 			<div class="login-input-wrap">
-				<input type="text" name = "userid" value={{session["userID"]}} readonly></input>
+				<input type="text" name = "user_id" value={{session["userid"]}} readonly></input>
 			</div>
       <div class="password-wrap"></div>
-      <label> 투자성향 </label>
+    <label> 투자성향 </label>
 			<div class="login-input-wrap">
-				<input type="text" name = "analysis" value={{analysis}} readonly></input>
+				<input type="text" name = "tendendy" value={{user_tend}} readonly></input>
 			</div>
 
       <div class="password-wrap"></div>
-       <label> 비밀번호 변경 </label>
+    <label> 비밀번호 변경 </label>
 			<div class="login-input-wrap">	
-				<input type="password" name = "password" placeholder="Password"></input>
+				<input type="password" name = "edit_pw" placeholder="Password"></input>
 			</div>
       <div class="login-input-wrap">	
-				<input type="password" name = "ck_password" placeholder="Confirm Password"></input>
+				<input type="password" name = "ck_pw" placeholder="Confirm Password"></input>
 			</div>
       <div>
       </div>
 			<div class="login-button-wrap">
-				<button type="submit" formaction="/delete/edit" name="edit">Edit Password</button>
+				<button type="submit" formaction="/user/editPw" name="edit">Edit Password</button>
 			</div>
       <div class="login-button-wrap">
-				<button type="submit" formaction="/delete/delete_user">Delete Account</button>
+				<button type="submit" formaction="/user/deleteUser">Delete Account</button>
 			</div>
 		</section>
   </form>
@@ -40,5 +47,6 @@
   <section class="Easy-sgin-in-wrap">
 			<a href="/login/home" style="text-decoration:none">
 			<p class="forget-msg">Cancel</p></a>
-	</section>
+		</section>
+</div>
   {%endblock%}

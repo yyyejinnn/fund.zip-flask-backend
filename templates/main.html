@@ -105,7 +105,7 @@ data-ride="carousel"
 
           <a
             target="_self"
-            href="/fundsearch.html"
+            href="/fund/search"
             class="btn btn-outline-white btn-lg"
             >펀드 조회하러 가기
           </a>
@@ -154,7 +154,7 @@ data-ride="carousel"
 
           <a
             target="_self"
-            href="/analysis.html"
+            href="/analysis/analysis"
             class="btn btn-outline-white btn-lg"
             >투자 성향 진단하러 가기
           </a>
@@ -168,50 +168,6 @@ data-ride="carousel"
 </div>
 <!--/.Slides-->
 
-<!--테이블로 380개 펀드 데이터 읽어오기-->
-<div>
-<script>
-  //가져온 데이터 값을 for문을 통해 한줄씩 읽어온다
-  d3.csv("./static/fund/fund_result.csv", function(error, data){
-      if(error) throw error;
-  
-      else{
-          columns = ['num','fund','predict','min', 'max', 'risk']
-          tabulate(data, columns);
-      }})
-
-          //불러올 테이블 만들기
-          tabulate = function(data, columns){
-              table = d3.select('body').append('table')
-              thead = table.append('thead')
-              tbody = table.append('tbody')
-
-              thead.append('tr') //thead 만드는 부분으로 tr태그 append
-                  .selectAll('th') //모든 th
-                  .data(columns) //데이터 바인딩은 columns 이용
-                  .enter() //데이터 개수만큼 진행
-                  .append('th') //columns만큼 th 생성
-                  .text(function(data){ return data }) //th에 텍스트, 텍스트값은 데이터에서
-          
-              rows = tbody.selectAll('tr') //row만드는 부분 모든 tr태그 가져옴
-                          .data(data) //데이터 바인딩에 data 값
-                          .enter()
-                          .append('tr') //tr태그 data개수만큼
-
-              cells = rows.selectAll('td') //cells만드는 부분으로 모든 td값
-                      .data(function(row){ //map형식, key value 형태로
-                          return columns.map(function(column){
-                              return{ column: column, value:row[column]}
-                          })
-                      })
-                      .enter() //데이터 바인딩 한 값 만큼 진행
-                      .append('td') //td를 데이터 개수만큼 추가
-                      .text(function(d){return d.value}) //text값은 윗 부분의 data의 value값을 넣어줌
-
-                      return table;
-                  }
-</script>
-</div>
 <!--Controls-->
 <a
   class="carousel-control-prev"
