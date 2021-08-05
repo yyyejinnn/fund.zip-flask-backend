@@ -1,8 +1,15 @@
-from flask import Flask, Blueprint, request, render_template, flash, redirect
+from flask import Flask, Blueprint, request, render_template, flash, redirect, session
 from flask.helpers import url_for
 from fund_controls.analysis_controls import Tendency
 
+#from app import login_required
+
 bp = Blueprint('analysis', __name__, url_prefix='/analysis')
+
+
+@bp.route('/anahome', methods=('GET', 'POST'))
+def anahome():
+    return render_template('analysis/analysis.html')
 
 
 @bp.route('/analysis', methods=('GET', 'POST'))
@@ -33,7 +40,17 @@ def analysis():
         return render_template('analysis/result.html', tendency=tendency)
 
     else:  # GET
-        return render_template('analysis/analysis.html')
+        if "userid" in session:  # 로그인 되어있고
+            user = Tendency.selectTend()
+            if user:  # 만약 투자성향진단 결과가 이미 존재하면
+                tendency = user
+                return render_template('analysis/result.html', tendency=tendency)
+            else:  # 투자성향진단 결과 존재하지 않으면
+                return redirect(url_for('analysis.anahome'))
+
+        else:  # 로그인 안되어있으면
+            flash('로그인이 필요한 서비스입니다.')
+            return render_template("main.html")
 
 
 @bp.route('/resultTend', methods=('GET', 'POST'))

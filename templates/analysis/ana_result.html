@@ -8,19 +8,19 @@
 <div class="main-container">
   <div class="text-center mt-3">
     <br /><br /><br />
-    <h3>추천 위험도는 {{result}}등급이며, 해당 펀드는 다음과 같습니다.</h3>
-    <span>[2021년 6~8월 3개월 기준.]</span>
+    <h3>위험등급 "{{result}}등급"에 해당하는 펀드는 다음과 같습니다.</h3>
+    <span>[2021년 6~8월 3개월 기준]</span>
     <br /><br />
     <center>
       <table class="table" style="width: 90%">
         <thead>
           <tr>
+            <th>NO.</th>
             <th>펀드 명</th>
-            <th>max</th>
-            <th>min</th>
-            <th>num</th>
-            <th>predict</th>
-            <th>risk</th>
+            <th>예측가</th>
+            <th>최저예측가</th>
+            <th>최대예측가</th>
+            <th>위험도</th>
           </tr>
         </thead>
         <tbody id="result_tbl"></tbody>
@@ -37,16 +37,16 @@
       if (data[i].risk == 6-result){ //만약 result 5이라면 위험도는 1
         document.querySelector('#result_tbl').innerHTML += "<tr>" +
           "<td>" +
+          data[i].num +
+          "</td>" +
+          "<td>" +
           data[i].fund +
           "</td>" +
           "<td>" +
-          data[i].max +
+          data[i].predict +
           "</td>" +
           "<td>" +
           data[i].min +
-          "</td>" +
-          "<td>" +
-          data[i].num +
           "</td>" +
           "<td>" +
           data[i].predict +

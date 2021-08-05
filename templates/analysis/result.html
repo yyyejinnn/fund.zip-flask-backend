@@ -18,19 +18,39 @@
     />
     <!--Section: Main info-->
     <section class="mt-3 wow fadeIn">
-      <form action="/analysis/resultTend" , method="POST">
+      <form method="POST">
         <div class="text-center mt-3">
-          <h3>고객님의 투자 성향은 "{{tendency}}" 입니다.</h3>
-          <label for="correct">투자성향에 맞는 펀드를 추천 받고싶다면? </label>
-          <input
-            type="submit"
-            style="font-family: 'Nanum Barun Gothic' !important"
-            value="펀드 추천 받으러 가기"
-          />
-          <input type="hidden" name="correct" value="{{tendency}}" />
+          <div class="row1">
+            <br />
+            <h3 style="display: inline">
+              고객님의 투자 성향은 "{{tendency}}" 입니다.
+            </h3>
+            <input
+              type="submit"
+              style="font-family: 'Nanum Barun Gothic' !important"
+              value="진단 다시하기"
+              formaction="/analysis/anahome"
+            />
+          </div>
+
+          <br />
+
+          <div class="row2">
+            <label for="correct"
+              >투자성향에 맞는 펀드를 추천 받고싶다면?
+            </label>
+            <input
+              type="submit"
+              style="font-family: 'Nanum Barun Gothic' !important"
+              value="펀드 추천 받으러 가기"
+              formaction="/analysis/resultTend"
+            />
+            <input type="hidden" name="correct" value="{{tendency}}" />
+          </div>
         </div>
       </form>
     </section>
+    <br />
   </div>
 </main>
 {%endblock%}

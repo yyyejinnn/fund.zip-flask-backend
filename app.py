@@ -10,7 +10,7 @@ app.register_blueprint(user_view.bp)  # 회원가입, 로그인
 app.register_blueprint(analysis_view.bp)  # 투자성향
 app.register_blueprint(fund_view.bp)  # 펀드 조회, 예측
 
-#login_manager = LoginManager()
+# login_manager = LoginManager()
 # login_manager.init_app(app)
 # login_manager.session_protection = "strong"  # session 강화
 

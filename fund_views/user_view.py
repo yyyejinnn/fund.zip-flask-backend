@@ -4,9 +4,9 @@ from flask.templating import render_template
 from werkzeug.utils import redirect
 from fund_controls.user_control import User
 from fund_controls.analysis_controls import Tendency
+#import functools
 
 bp = Blueprint('user', __name__, url_prefix='/user')
-
 
 # 회원가입
 @bp.route('/signup', methods=('GET', 'POST'))
