@@ -45,9 +45,9 @@
 
       <!-- Right -->
       <ul class="navbar-nav nav-flex-icons">
-        {%if login_result %}
+        {%if "userid" in session %}
         <a class="nav-link">
-          {{username}}님 안녕하세요!
+          {{session['userid']}}님 안녕하세요!
           <span class="sr-only">(current)</span>
         </a>
 

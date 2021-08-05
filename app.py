@@ -17,11 +17,7 @@ app.register_blueprint(fund_view.bp)  # 펀드 조회, 예측
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
-    if "userid" in session:
-        return render_template(
-            'main.html', username=session["userid"], login_result=True)
-    else:
-        return render_template('main.html', login_result=False)
+    return render_template('main.html')
 
 
 if __name__ == '__main__':
