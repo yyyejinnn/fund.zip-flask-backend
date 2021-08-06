@@ -12,7 +12,7 @@ def anahome():
     return render_template('analysis/analysis.html')
 
 
-@bp.route('/analysis', methods=('GET', 'POST'))
+@bp.route('/analysis', methods=('GET', 'POST'))  # 투자성향진단
 def analysis():
     if request.method == 'POST':
         answer1 = float(request.form['answer1'])
@@ -36,19 +36,20 @@ def analysis():
         elif cal > 80:
             tendency = '공격투자형'
 
-        Tendency.updateTend(tendency)
+        Tendency.updateTend(tendency)  # 결과 DB에 업데이트
+        # 펀드 추천 페이지로 넘어가기
         return render_template('analysis/result.html', tendency=tendency)
 
     else:  # GET
-        if "userid" in session:  # 로그인 되어있고
+        if "userid" in session:  # 1. 로그인 되어있고
             user = Tendency.selectTend()
-            if user:  # 만약 투자성향진단 결과가 이미 존재하면
+            if user:  # 1-1.만약 투자성향진단 결과가 이미 존재하면
                 tendency = user
                 return render_template('analysis/result.html', tendency=tendency)
-            else:  # 투자성향진단 결과 존재하지 않으면
+            else:  # 1-2.투자성향진단 결과 존재하지 않으면
                 return redirect(url_for('analysis.anahome'))
 
-        else:  # 로그인 안되어있으면
+        else:  # 2. 로그인 안되어있으면
             flash('로그인이 필요한 서비스입니다.')
             return render_template("main.html")
 

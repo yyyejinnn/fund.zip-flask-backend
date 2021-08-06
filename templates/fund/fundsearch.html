@@ -1,94 +1,77 @@
-{%extends 'base.html'%} {%block content%}
-<div class="fundtable">
-  <!-- 펀드 조회 테이블 생성 -->
-  <table class="table">
-    <thead>
-      <br /><br /><br /><br />
-
-      <tr>
-        <th>펀드 특성</th>
-        <th>보험 회사</th>
-        <th>펀드 코드</th>
-        <th>펀드 명</th>
-        <th>기준가</th>
-        <th>1개월<br />수익률</th>
-        <th>3개월<br />수익률</th>
-        <th>5개월<br />수익률</th>
-        <th>수수료</th>
-        <th>펀드속성</th>
-        <th>운영규모</th>
-      </tr>
-    </thead>
-    <tbody id="demo"></tbody>
-  </table>
+{%extends 'base.html'%}
+<!---->
+{%block head%} {{super()}}
+<script src="https://d3js.org/d3.v4.min.js"></script>
+{%endblock%}
+<!---->
+{%block content%}
+<div class="main-container">
+  <div class="text-center mt-3">
+    <br /><br /><br />
+    <center>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>펀드특성</th>
+            <th>보험회사</th>
+            <th>펀드코드</th>
+            <th>펀드명</th>
+            <th>기준가</th>
+            <th>1개월<br />수익률</th>
+            <th>3개월<br />수익률</th>
+            <th>5개월<br />수익률</th>
+            <th>수수료</th>
+            <th>펀드속성</th>
+            <th>운영규모</th>
+          </tr>
+        </thead>
+        <tbody id="search_tbl"></tbody>
+      </table>
+    </center>
+  </div>
 </div>
 
-<!-- Custom scripts -->
-<script type="text/javascript">
-  let xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      let data = JSON.parse(this.responseText).feed.entry;
-
-      let i;
-      for (i = 0; i < data.length; i++) {
-        let name = data[i]["gsx$_cn6ca"]["$t"]; //펀드 특성
-        let age = data[i]["gsx$_cokwr"]["$t"]; //보험 회사
-        let email = data[i]["gsx$_cpzh4"]["$t"]; //펀드 코드
-        let ftype = data[i]["gsx$_cre1l"]["$t"]; //펀드명
-        let price = data[i]["gsx$_chk2m"]["$t"]; //기준가
-        let earn1 = data[i]["gsx$_ciyn3"]["$t"]; //1개월 수익률
-        let earn3 = data[i]["gsx$_ckd7g"]["$t"]; //3개월 수익률
-        let earn6 = data[i]["gsx$_clrrx"]["$t"]; //6개월 수익률
-        let fee = data[i]["gsx$_cyevm"]["$t"]; // 수수료
-        let fclasscode = data[i]["gsx$_cztg3"]["$t"]; //펀드속성 fclasscode
-        let smallType = data[i]["gsx$_d180g"]["$t"]; //운영규모
-
-        document.getElementById("demo").innerHTML +=
-          "<tr>" +
-          "<td>" +
-          name +
-          "</td>" +
-          "<td>" +
-          age +
-          "</td>" +
-          "<td>" +
-          email +
-          "</td>" +
-          "<td>" +
-          ftype +
-          "</td>" +
-          "<td>" +
-          price +
-          "</td>" +
-          "<td>" +
-          earn1 +
-          "</td>" +
-          "<td>" +
-          earn3 +
-          "</td>" +
-          "<td>" +
-          earn6 +
-          "</td>" +
-          "<td>" +
-          fee +
-          "</td>" +
-          "<td>" +
-          fclasscode +
-          "</td>" +
-          "<td>" +
-          smallType +
-          "</td>" +
-          "</tr>";
-      }
+<script>
+  d3.csv("/static/fund/fund_search.csv", function (data) {
+    //d3.csv로 데어터 가져옴
+    for (let i = 0; i < data.length; i++) {
+      document.querySelector("#search_tbl").innerHTML +=
+        "<tr>" +
+        "<td>" +
+        data[i].property +
+        "</td>" +
+        "<td>" +
+        data[i].insName +
+        "</td>" +
+        "<td>" +
+        data[i].fCode +
+        "</td>" +
+        "<td>" +
+        data[i].fName +
+        "</td>" +
+        "<td>" +
+        data[i].price +
+        "</td>" +
+        "<td>" +
+        data[i].earn1 +
+        "</td>" +
+        "<td>" +
+        data[i].earn3 +
+        "</td>" +
+        "<td>" +
+        data[i].earn5 +
+        "</td>" +
+        "<td>" +
+        data[i].fee +
+        "</td>" +
+        "<td>" +
+        data[i].smallType +
+        "</td>" +
+        "<td>" +
+        data[i].fSize +
+        "</td>" +
+        "</tr>";
     }
-  };
-
-  xmlhttp.open(
-    "GET",
-    "https://spreadsheets.google.com/feeds/list/1Gfcd2_7v9cD_MW8iBTMa3Nc4YyHON8VyRnyUaIpdHxc/od6/public/values?alt=json",
-    true
-  );
-  xmlhttp.send();
+  });
 </script>
 {%endblock%}
