@@ -2,19 +2,20 @@ from flask import Flask, Blueprint, request, flash, session, render_template
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
-#from fbprophet import Prophet
 
-bp = Blueprint('fund', __name__, url_prefix='/fund')
+# from fbprophet import Prophet
+
+bp = Blueprint("fund", __name__, url_prefix="/fund")
 
 
-@bp.route('/search')  # 펀드 조회
+@bp.route("/search")  # 펀드 조회
 def search():
-    return render_template('fund/fundsearch.html')
+    return render_template("fund/fundsearch.html")
 
 
-@bp.route('/predict', methods=('GET', 'POST'))  # 펀드 수익률 예측
+@bp.route("/predict", methods=("GET", "POST"))  # 펀드 수익률 예측
 def predict():
-    '''
+    """
     if request.method == 'POST':  # post형식으로 가져오면
         value = request.form['num']  # num을 가져와서
         value = int(value)  # int로 형변환한다.
@@ -54,6 +55,5 @@ def predict():
         if os.path.isfile(file):  # 만약 이미 만들어진 fund.png있으면 삭제
             os.remove(file)
         plt.savefig('/static/fund/fund.png', bbox_inches='tight',
-                    pad_inches=0)  # 무조건 plt.show이전에
-'''
-    return render_template('fund/predict.html')
+                    pad_inches=0)  # 무조건 plt.show이전에"""
+    return render_template("fund/predict.html")

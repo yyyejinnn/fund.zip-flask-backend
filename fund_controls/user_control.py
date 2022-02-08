@@ -1,8 +1,9 @@
 from flask import Flask
 from db_models import mysql
+import bcrypt
 
 
-class User():
+class User:
     # 회원가입
     @staticmethod
     def get(signup_id):  # get user
@@ -19,10 +20,17 @@ class User():
 
     @staticmethod  # signup
     def signUp(signup_id, signup_pw, name):
+
+        hash_pw = bcrypt.hashpw(str(signup_pw).encode("utf-8"), bcrypt.gensalt())
+        save_pw = hash_pw.decode("utf-8")
+
         conn = mysql.MYSQL_CONN
         cursor = conn.cursor()
         sql = "INSERT INTO user_info(id, password, name) VALUES ('%s', '%s', '%s')" % (
-            str(signup_id), str(signup_pw), str(name))
+            str(signup_id),
+            save_pw,
+            str(name),
+        )
         cursor.execute(sql)
         conn.commit()
 
@@ -46,8 +54,10 @@ class User():
     def editPw(user_id, edit_pw):
         conn = mysql.MYSQL_CONN
         cursor = conn.cursor()
-        sql = "UPDATE user_info SET password = '%s' where id = '%s'" % (str(
-            edit_pw), str(user_id))
+        sql = "UPDATE user_info SET password = '%s' where id = '%s'" % (
+            str(edit_pw),
+            str(user_id),
+        )
 
         cursor.execute(sql)
         conn.commit()
