@@ -4,6 +4,7 @@ from flask.templating import render_template
 from werkzeug.utils import redirect
 from fund_controls.user_control import User
 from fund_controls.analysis_controls import Tendency
+import bcrypt
 
 
 # import functools
@@ -55,14 +56,17 @@ def signup():
 def login():
     if request.method == "POST":
         login_id = request.form["login_id"]
-        login_pw = request.form["login_pw"]
+        login_pw = str(request.form["login_pw"])
 
         user = User.getUser(login_id)
+
+        print(bcrypt.checkpw(login_pw.encode("utf-8"), user[1].encode("utf-8")))
 
         if user == None:  # 아이디가 존재하지 않으면
             flash("아이디를 확인해 주십시오.")
             return redirect(url_for("user.login"))
-        elif login_pw != user[1]:  # user[1]: password
+        elif not bcrypt.checkpw(login_pw.encode("utf-8"), user[1].encode("utf-8")):
+            # user[1]: password,
             flash("비밀번호를 다시 확인해주십시오.")
             return redirect(url_for("user.login"))
         else:

@@ -22,7 +22,7 @@ class User:
     def signUp(signup_id, signup_pw, name):
 
         hash_pw = bcrypt.hashpw(str(signup_pw).encode("utf-8"), bcrypt.gensalt())
-        save_pw = hash_pw.decode("utf-8")
+        save_pw = hash_pw.decode("utf-8")  # 디코딩
 
         conn = mysql.MYSQL_CONN
         cursor = conn.cursor()
@@ -52,10 +52,13 @@ class User:
     # 비밀번호 변경
     @staticmethod
     def editPw(user_id, edit_pw):
+        hash_pw = bcrypt.hashpw(str(edit_pw).encode("utf-8"), bcrypt.gensalt())
+        save_pw = hash_pw.decode("utf-8")  # 디코딩
+
         conn = mysql.MYSQL_CONN
         cursor = conn.cursor()
         sql = "UPDATE user_info SET password = '%s' where id = '%s'" % (
-            str(edit_pw),
+            save_pw,
             str(user_id),
         )
 
